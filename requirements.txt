@@ -11,8 +11,6 @@ scipy
 tensorboardX
 tensorflow
 tensorflow_addons
-tf_nightly
-tfa_nightly
 torch
 torchsummary
 torchvision
