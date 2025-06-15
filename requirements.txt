@@ -8,7 +8,6 @@ Pillow
 scikit_image
 scikit_learn
 scipy
-skimage
 tensorboardX
 tensorflow
 tensorflow_addons
