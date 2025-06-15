@@ -53,10 +53,10 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             img = cv2.imread(os.path.join(img_path, jpgfile))
             print(realname)
             dst = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            label1 = cv2.imread(os.path.join(label_path, 'EX', realname + '.tif'), 0)
-            label2 = cv2.imread(os.path.join(label_path, 'HE', realname + '.tif'), 0)
-            label3 = cv2.imread(os.path.join(label_path, 'MA', realname + '.tif'), 0)
-            label4 = cv2.imread(os.path.join(label_path, 'SE', realname + '.tif'), 0)
+            label1 = cv2.imread(os.path.join(label_path, 'EX', realname + '_EX.tif'), 0)
+            label2 = cv2.imread(os.path.join(label_path, 'HE', realname + '_HE.tif'), 0)
+            label3 = cv2.imread(os.path.join(label_path, 'MA', realname + '_MA.tif'), 0)
+            label4 = cv2.imread(os.path.join(label_path, 'SE', realname + '_SE.tif'), 0)
             label_all = np.zeros_like(label1)  # 用1-4标记四种病变
             label_all[np.where(label1 > 0)] = 1
             label_all[np.where(label2 > 0)] = 2
@@ -182,9 +182,9 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
 def main(args):
     dataset = args.dataset
     for f in ['train', 'test']:
-        if dataset == 'IDRiD':
-            img_path = os.path.join('original_data/IDRiD/image', f)
-            label_path = os.path.join('original_data/IDRiD/label', f)
+        if dataset:
+            img_path = os.path.join(dataset,'image', f)
+            label_path = os.path.join(dataset,'label', f)
             if f == 'test':
                 f = 'val'
             img_savedir = os.path.join('IDRiD', f, '4 classes/image_zoom_hd')
