@@ -11,7 +11,7 @@ scipy
 tensorboardX
 tensorflow
 tensorflow_addons
-tf_nightly_gpu
+tf_nightly
 tfa_nightly
 torch
 torchsummary
