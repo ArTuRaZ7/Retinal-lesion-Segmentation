@@ -30,14 +30,14 @@ import tensorflow.keras.backend as K
 from models.Unet3_Plus import unet3_plus
 import time
 
-'''
+
 gpu = "0,1"
 os.environ["CUDA_VISIBLE_DEVICES"] = gpu
 config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
 gpu_num = len(gpu.split(','))
 strategy = tf.distribute.MirroredStrategy()
-'''
+
 tf.compat.v1.disable_eager_execution()
 print(tf.__version__)
 
