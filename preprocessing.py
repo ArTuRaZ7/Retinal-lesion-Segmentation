@@ -60,13 +60,15 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             print(type(label4))
             label_all = np.zeros_like(label1)  # 用1-4标记四种病变
             label_all[np.where(label1 > 0)] = 1
-            if label2!=None:
+            try:
                 label_all[np.where(label2 > 0)] = 2
-            if label3!=None:
+            except: pass
+            try:
                 label_all[np.where(label3 > 0)] = 3
-            if label4!=None:
+            except: pass
+            try:
                 label_all[np.where(label4 > 0)] = 4
-
+            except: pass
             # print(label1)
 
             dst = cv2.GaussianBlur(dst, (1, 1), 0)
