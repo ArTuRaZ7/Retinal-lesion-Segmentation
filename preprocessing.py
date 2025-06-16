@@ -33,7 +33,7 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
         new_img = new_pic.resize((width, height), resize_mode)
         return np.asarray(new_img)
 
-    if ds == 'IDRiD':
+    if ds:
         max_width = []
         max_hight = []
         if not os.path.exists(img_savedir):
