@@ -702,7 +702,7 @@ def main(args):
     test_path = args.dataset+'/val/4 classes/image_zoom_hd'
     groundtruth_path = args.dataset+'/val/label_zoom_hd'
     save_path = args.dataset+'/result/4 classes/' + log_name
-    load_dir_initial = args.load_dir_initial
+    load_dir_initial = None
     folder_dict = {
         0: [args.image_folder, args.label_folder],
         1: ['image_zoom_hd', 'label_zoom_hd']
