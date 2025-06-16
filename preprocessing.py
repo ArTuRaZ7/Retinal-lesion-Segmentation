@@ -110,22 +110,20 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             # cv2.imshow('1',crop_img)
             # cv2.waitKey(0)
             crop_label1 = convert(label1[y1:y1 + hight, x1:x1 + width])
-            if type(label2)!='NoneType':
+            try:
                 crop_label2 = convert(label2[y1:y1 + hight, x1:x1 + width])
-            if type(label3)!='NoneType':
                 crop_label3 = convert(label3[y1:y1 + hight, x1:x1 + width])
-            if type(label4)!='NoneType':
                 crop_label4 = convert(label4[y1:y1 + hight, x1:x1 + width])
+            except: pass
             crop_label_all = convert(label_all[y1:y1 + hight, x1:x1 + width])
             cv2.imwrite(os.path.join(img_savedir, realname + '.png'), crop_img)
 
             cv2.imwrite(os.path.join(label_savedir, 'EX', realname + '.png'), crop_label1)
-            if type(label2)!='NoneType':
+            try:
                 cv2.imwrite(os.path.join(label_savedir, 'HE', realname + '.png'), crop_label2)
-            if type(label3)!='NoneType':
                 cv2.imwrite(os.path.join(label_savedir, 'MA', realname + '.png'), crop_label3)
-            if type(label4)!='NoneType':
                 cv2.imwrite(os.path.join(label_savedir, 'SE', realname + '.png'), crop_label4)
+            except: pass
             cv2.imwrite(os.path.join(mixlabel_savedir, realname + '.png'), crop_label_all)
     elif ds == 'e_ophtha':
         max_width = []
