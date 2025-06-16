@@ -64,6 +64,7 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             if type(label3)!='NoneType':
                 label_all[np.where(label3 > 0)] = 3
             if type(label4)!='NoneType':
+                print(type(label4))
                 label_all[np.where(label4 > 0)] = 4
 
             # print(label1)
