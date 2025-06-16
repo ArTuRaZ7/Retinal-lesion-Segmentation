@@ -1,5 +1,5 @@
-tf_nightly_gpu==2.5.0.dev20201210
-tfa_nightly==0.13.0.dev20210122023226
+tensorflow==2.5.0
+tensorflow_addons==0.13.0
 Keras_Preprocessing==1.1.2
 matplotlib==3.4.2
 openpyxl
