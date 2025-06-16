@@ -59,12 +59,11 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             label4 = cv2.imread(os.path.join(label_path, 'SE', realname + '_SE.tif'), 0)
             label_all = np.zeros_like(label1)  # 用1-4标记四种病变
             label_all[np.where(label1 > 0)] = 1
-            if type(label2)!='NoneType':
+            if label2!=None:
                 label_all[np.where(label2 > 0)] = 2
-            if type(label3)!='NoneType':
+            if label3!=None:
                 label_all[np.where(label3 > 0)] = 3
-            if type(label4)!='NoneType':
-                print(type(label4))
+            if label4!=None:
                 label_all[np.where(label4 > 0)] = 4
 
             # print(label1)
