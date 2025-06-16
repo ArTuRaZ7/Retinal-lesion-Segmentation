@@ -72,7 +72,7 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             thresh = cv2.dilate(thresh, kernel, iterations=3)
             # cv2.imshow("d",dst)
             # cv2.waitKey(0)
-            _, contours, hierarchy1 = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
+            contours, hierarchy1 = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
             print(len(contours), jpgfile)
             print(hierarchy1)
             a = []
