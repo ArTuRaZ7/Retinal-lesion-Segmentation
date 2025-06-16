@@ -21,13 +21,13 @@ def crop(img, label, fullname, img_save_dir, label_save_dir, dataset='IDRiD'):
 
     h, w = label.shape
     _, thresh = cv2.threshold(label, 0, 255, cv2.THRESH_BINARY)
-    if dataset == 'IDRiD':
+    if dataset:
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 9))       #IDRiD=9
     if dataset == 'e_ophtha':
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
     thresh = cv2.dilate(thresh, kernel, iterations=3)
     #remove holes within lesion, and make sure cropped images have unbroken features
-    _, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
+    contours, hierarchy = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
     new_label = np.zeros((h, w, 1), np.uint8)
     new_label.fill(255)
     j = 0
@@ -75,7 +75,7 @@ def main(args):
     dataset = args.dataset
     material_dir = os.path.join(args.material_dir, dataset)  # 裁剪病变保存文件夹
     original_data_dir = os.path.join(args.original_data_dir, dataset+'/train')  # 原始数据，包括原始rgb图像和label
-    if dataset == 'IDRiD':
+    if dataset:
         lesion_class = ['EX', 'HE', 'MA', 'SE']
     if dataset == 'e_ophtha':
         lesion_class = ['EX', 'MA']
