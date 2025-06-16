@@ -57,7 +57,6 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             label2 = cv2.imread(os.path.join(label_path, 'HE', realname + '_HE.tif'), 0)
             label3 = cv2.imread(os.path.join(label_path, 'MA', realname + '_MA.tif'), 0)
             label4 = cv2.imread(os.path.join(label_path, 'SE', realname + '_SE.tif'), 0)
-            print(type(label4))
             label_all = np.zeros_like(label1)  # 用1-4标记四种病变
             label_all[np.where(label1 > 0)] = 1
             try:
@@ -69,7 +68,6 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             try:
                 label_all[np.where(label4 > 0)] = 4
             except: pass
-            # print(label1)
 
             dst = cv2.GaussianBlur(dst, (1, 1), 0)
             dst = cv2.blur(dst, (5, 5))
@@ -79,8 +77,6 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             # cv2.imshow("d",dst)
             # cv2.waitKey(0)
             contours, hierarchy1 = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
-            print(len(contours), jpgfile)
-            print(hierarchy1)
             a = []
             for i in range(len(contours)):
                 a.append(len(contours[i]))
@@ -103,7 +99,6 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
 
             max_hight.append(hight)
             max_width.append(width)
-            print(max(max_width), max(max_hight))
             new_img = np.zeros((hight, width, 3), np.uint8)
             new_label = np.zeros((hight, width), np.uint8)
             crop_img = convert(img[y1:y1 + hight, x1:x1 + width], mode='RGB')
@@ -148,7 +143,6 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             label_all = np.zeros_like(label1)  # 用1-4标记四种病变
             label_all[np.where(label1 > 0)] = 1
             label_all[np.where(label2 > 0)] = 2
-            # print(label1)
 
             dst = cv2.GaussianBlur(dst, (3, 3), 0)
             dst = cv2.blur(dst, (1, 1))
@@ -156,7 +150,6 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             # cv2.imshow("d",dst)
             # cv2.waitKey(0)
             _, contours, hierarchy1 = cv2.findContours(thresh, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
-            print(len(contours), jpgfile)
 
             a = []
             for i in range(len(contours)):
@@ -180,7 +173,7 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
 
             max_hight.append(hight)
             max_width.append(width)
-            print(max(max_width), max(max_hight))
+            #print(max(max_width), max(max_hight))
             crop_img = convert(img[y1:y1 + hight, x1:x1 + width], mode='RGB')
             crop_label1 = convert(label1[y1:y1 + hight, x1:x1 + width])
             crop_label2 = convert(label2[y1:y1 + hight, x1:x1 + width])
