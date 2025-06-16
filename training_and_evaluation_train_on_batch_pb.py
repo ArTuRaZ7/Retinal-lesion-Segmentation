@@ -246,6 +246,7 @@ def build_model(classes=5,
         wdr = 0.0001
     # opt = Adam(learning_rate=lr)
     # opt = RAdam(lr=lr)
+    @tfa.optimizers.inject_hyperparams
     opt = AdamW(learning_rate=lr, weight_decay=wdr)
     # opt = tf.keras.optimizers.SGD(learning_rate=lr,momentum=0.9)
     # opt = tf.keras.optimizers.Nadam(lr=lr)
