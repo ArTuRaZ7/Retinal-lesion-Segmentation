@@ -30,6 +30,9 @@ import tensorflow.keras.backend as K
 from models.Unet3_Plus import unet3_plus
 import time
 
+@tfa.optimizers.inject_hyperparams
+class MyAdamW(AdamW):
+    pass
 
 gpu = "0,1"
 os.environ["CUDA_VISIBLE_DEVICES"] = gpu
@@ -246,8 +249,7 @@ def build_model(classes=5,
         wdr = 0.0001
     # opt = Adam(learning_rate=lr)
     # opt = RAdam(lr=lr)
-    @tfa.optimizers.inject_hyperparams
-    opt = AdamW(learning_rate=lr, weight_decay=wdr)
+    opt = MyAdamW(learning_rate=lr, weight_decay=wdr)
     # opt = tf.keras.optimizers.SGD(learning_rate=lr,momentum=0.9)
     # opt = tf.keras.optimizers.Nadam(lr=lr)
     # opt = SGD(lr=lr,momentum=0.9)
