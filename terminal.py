@@ -46,7 +46,6 @@ paraser.add_argument('--dens_MA', type=str, default='0_100',
                      help='The density range of pasted EX lesion, min_max')
 paraser.add_argument('--dens_SE', type=str, default='0_0',
                      help='The density range of pasted SE lesion, min_max')
-args = paraser.parse_args()
 #training and testing
 paraser.add_argument('--GPU_id', type=str, default='0', help='GPU id')
 paraser.add_argument('--log_name', type=str,default=None, help='a log name for an exp')
