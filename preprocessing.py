@@ -59,11 +59,11 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             label4 = cv2.imread(os.path.join(label_path, 'SE', realname + '_SE.tif'), 0)
             label_all = np.zeros_like(label1)  # 用1-4标记四种病变
             label_all[np.where(label1 > 0)] = 1
-            if label2.type()!='NoneType':
+            if type(label2)!='NoneType':
                 label_all[np.where(label2 > 0)] = 2
-            if label3.type()!='NoneType':
+            if type(label3)!='NoneType':
                 label_all[np.where(label3 > 0)] = 3
-            if label4.type()!='NoneType':
+            if type(label4)!='NoneType':
                 label_all[np.where(label4 > 0)] = 4
 
             # print(label1)
@@ -107,16 +107,22 @@ def zoom(img_path, label_path, img_savedir, label_savedir, mixlabel_savedir, siz
             # cv2.imshow('1',crop_img)
             # cv2.waitKey(0)
             crop_label1 = convert(label1[y1:y1 + hight, x1:x1 + width])
-            crop_label2 = convert(label2[y1:y1 + hight, x1:x1 + width])
-            crop_label3 = convert(label3[y1:y1 + hight, x1:x1 + width])
-            crop_label4 = convert(label4[y1:y1 + hight, x1:x1 + width])
+            if type(label2)!='NoneType':
+                crop_label2 = convert(label2[y1:y1 + hight, x1:x1 + width])
+            if type(label3)!='NoneType':
+                crop_label3 = convert(label3[y1:y1 + hight, x1:x1 + width])
+            if type(label4)!='NoneType':
+                crop_label4 = convert(label4[y1:y1 + hight, x1:x1 + width])
             crop_label_all = convert(label_all[y1:y1 + hight, x1:x1 + width])
             cv2.imwrite(os.path.join(img_savedir, realname + '.png'), crop_img)
 
             cv2.imwrite(os.path.join(label_savedir, 'EX', realname + '.png'), crop_label1)
-            cv2.imwrite(os.path.join(label_savedir, 'HE', realname + '.png'), crop_label2)
-            cv2.imwrite(os.path.join(label_savedir, 'MA', realname + '.png'), crop_label3)
-            cv2.imwrite(os.path.join(label_savedir, 'SE', realname + '.png'), crop_label4)
+            if type(label2)!='NoneType':
+                cv2.imwrite(os.path.join(label_savedir, 'HE', realname + '.png'), crop_label2)
+            if type(label3)!='NoneType':
+                cv2.imwrite(os.path.join(label_savedir, 'MA', realname + '.png'), crop_label3)
+            if type(label4)!='NoneType':
+                cv2.imwrite(os.path.join(label_savedir, 'SE', realname + '.png'), crop_label4)
             cv2.imwrite(os.path.join(mixlabel_savedir, realname + '.png'), crop_label_all)
     elif ds == 'e_ophtha':
         max_width = []
